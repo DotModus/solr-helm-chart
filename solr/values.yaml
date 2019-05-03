@@ -16,7 +16,7 @@ external_metrics:
 hpa:
   min: 3
   max: 3
-  targetAverageUtilization: "80%"
+  targetAverageUtilization: 80
 
 solr_complex_start_command: [/bin/bash]
 solr_start_gke: ["-c", "export SOLR_ZONE=$(curl -H Metadata-Flavor:Google http://metadata/computeMetadata/v1/instance/zone | cut -d/ -f4) && \
