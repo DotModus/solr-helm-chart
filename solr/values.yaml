@@ -10,7 +10,10 @@ external_metric: false
 
 external_metrics:
   metricName: ""
-  targetAverageValue: ""
+  targetAverageValue: 2
+  metricSelector:
+    matchLabels:
+      kube_container_name: solr
 
 # HPA defaults
 hpa:
