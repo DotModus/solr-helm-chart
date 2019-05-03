@@ -13,19 +13,14 @@ spec:
   minReplicas: {{ .Values.hpa.min }}
   maxReplicas: {{ .Values.hpa.max }}
   metrics:
-   - type: Resource
-     resource:
-       name: cpu
-         target:
-           type: Utilization
-           averageUtilization: {{ .Values.hpa.targetAverageUtilization }}
+  - resource:
+      name: cpu
+      targetAverageUtilization: {{ .Values.hpa.targetAverageUtilization }}
+    type: Resource
 {{- if .Values.external_metric }}
-   - type: External
-     external:
-       metricName: {{ .Values.external_metrics.metricName }}
-       metricSelector:
-         matchLabels:
-           kube_container_name: {{ .Values.external_metrics.metricSelector }}
-       targetAverageValue: {{ .Values.external_metrics.targetAverageValue }}
+  - external:
+      metricName: {{ .Values.external_metrics.metricName }}
+      targetAverageValue: {{ .Values.external_metrics.targetAverageValue }}
+    type: External
 {{- end }}
 {{- end }}
