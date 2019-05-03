@@ -81,6 +81,13 @@ Create chart name and version as used by the chart label.
 {{- end -}}
 
 {{/*
+  Define the name of the solr autoscaling
+*/}}
+{{- define "solr.autoscaling-name" -}}
+{{- printf "%s-%s" (include "solr.fullname" .) "autoscaling" | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+
+{{/*
   Define the labels that should be applied to all resources in the chart
 */}}
 {{- define "solr.common.labels" -}}
