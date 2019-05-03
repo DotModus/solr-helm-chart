@@ -1,0 +1,26 @@
+{{- if .Values.hpa_enabled }}
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: "{{ template "solr.name" . }}"
+  labels:
+{{ include "solr.common.labels" . | indent 4 }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: StatefulSet
+    name: {{ include "solr.fullname" . }}
+  minReplicas: {{ .Values.hpa.min }}
+  maxReplicas: {{ .Values.hpa.max }}
+  metrics:
+  - resource:
+      name: cpu
+      targetAverageUtilization: {{ .Values.hpa.targetAverageUtilization }}
+    type: Resource
+{{- if .Values.external_metric }}
+  - external:
+      metricName: {{ .Values.external_metric.metricName }}
+      targetAverageValue: {{ .Values.external_metric.targetAverageValue }}
+    type: External
+{{- end }}
+{{- end }}
