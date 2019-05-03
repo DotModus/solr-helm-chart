@@ -7,6 +7,8 @@ hpa_enabled: false
 
 # External metric HPA Enabled
 external_metric: false
+
+external_metrics:
   metricName: "solr.search_handler.select_one_minute_rate"
   targetAverageValue: ""
 
