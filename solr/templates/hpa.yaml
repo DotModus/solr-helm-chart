@@ -19,8 +19,8 @@ spec:
     type: Resource
 {{- if .Values.external_metric }}
   - external:
-      metricName: {{ .Values.external_metric.metricName }}
-      targetAverageValue: {{ .Values.external_metric.targetAverageValue }}
+      metricName: {{ .Values.external_metrics.metricName }}
+      targetAverageValue: {{ .Values.external_metrics.targetAverageValue }}
     type: External
 {{- end }}
 {{- end }}
