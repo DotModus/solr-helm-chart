@@ -135,3 +135,6 @@ exporter:
   service:
     type: "ClusterIP"
     annotations: {}
+
+zookeeper:
+  enabled: true
